@@ -59,6 +59,130 @@ body::before {
     66% { transform: translate(-30px, 50px) scale(0.95); }
 }
 
+/* Advanced ambient light effects */
+.ambient-light {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: screen;
+}
+
+.light-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99,102,241,0.6) 0%, transparent 70%);
+    top: -200px;
+    left: -200px;
+    animation: moveLight1 20s ease-in-out infinite;
+}
+
+.light-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139,92,246,0.5) 0%, transparent 70%);
+    bottom: -150px;
+    right: -150px;
+    animation: moveLight2 18s ease-in-out infinite;
+}
+
+.light-3 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(59,130,246,0.4) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: moveLight3 22s ease-in-out infinite;
+}
+
+.light-4 {
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(168,85,247,0.35) 0%, transparent 70%);
+    top: 20%;
+    right: 10%;
+    animation: moveLight4 25s ease-in-out infinite;
+}
+
+@keyframes moveLight1 {
+    0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.4;
+    }
+    25% { 
+        transform: translate(100px, 150px) scale(1.2);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translate(200px, 100px) scale(0.9);
+        opacity: 0.3;
+    }
+    75% { 
+        transform: translate(50px, 200px) scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+@keyframes moveLight2 {
+    0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.4;
+    }
+    33% { 
+        transform: translate(-150px, -100px) scale(1.3);
+        opacity: 0.6;
+    }
+    66% { 
+        transform: translate(-80px, -180px) scale(0.8);
+        opacity: 0.35;
+    }
+}
+
+@keyframes moveLight3 {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 0.3;
+    }
+    25% { 
+        transform: translate(-30%, -60%) scale(1.4) rotate(90deg);
+        opacity: 0.5;
+    }
+    50% { 
+        transform: translate(-70%, -40%) scale(0.9) rotate(180deg);
+        opacity: 0.4;
+    }
+    75% { 
+        transform: translate(-40%, -70%) scale(1.2) rotate(270deg);
+        opacity: 0.45;
+    }
+}
+
+@keyframes moveLight4 {
+    0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.35;
+    }
+    20% { 
+        transform: translate(-120px, 80px) scale(1.15);
+        opacity: 0.5;
+    }
+    40% { 
+        transform: translate(-200px, 160px) scale(0.85);
+        opacity: 0.3;
+    }
+    60% { 
+        transform: translate(-80px, 120px) scale(1.25);
+        opacity: 0.55;
+    }
+    80% { 
+        transform: translate(-150px, 40px) scale(0.95);
+        opacity: 0.4;
+    }
+}
+
 /* Floating particles */
 .particles {
     position: absolute;
@@ -509,10 +633,46 @@ textarea:focus {
     color: white;
     border-bottom-color: white;
 }
+
+/* Credit */
+.credit {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.8;
+    animation: fadeIn 1s ease-in-out;
+    background: linear-gradient(90deg, 
+        var(--muted) 0%, 
+        var(--text) 25%, 
+        var(--accent-light) 50%, 
+        var(--text) 75%, 
+        var(--muted) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeIn 1s ease-in-out, shimmerText 4s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 0.8; transform: translateY(0); }
+}
+
+@keyframes shimmerText {
+    0%, 100% { background-position: 200% 0; }
+    50% { background-position: -200% 0; }
+}
 </style>
 </head>
 
 <body>
+
+<div class="ambient-light light-1"></div>
+<div class="ambient-light light-2"></div>
+<div class="ambient-light light-3"></div>
+<div class="ambient-light light-4"></div>
 
 <div class="particles" id="particles"></div>
 
@@ -546,6 +706,7 @@ textarea:focus {
                 <i class="fas fa-paper-plane"></i>
             </button>
         </div>
+        <div class="credit">Made by Karthik C S</div>
     </div>
 </div>
 
