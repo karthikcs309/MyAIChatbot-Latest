@@ -130,5 +130,4 @@ def clear_history():
     session.pop('current_file_name', None)
     return jsonify({"success": True})
 
-if __name__ == "__main__":
-    app.run()
+
