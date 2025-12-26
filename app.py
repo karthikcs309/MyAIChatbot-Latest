@@ -6,7 +6,7 @@ from google.genai import types
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = 'super_secret_key_2025_secure'  # Change for production
+app.secret_key = os.environ.get("SECRET_KEY", "fallback-secret")  # Change for production
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # Increased to 50MB for Gemini 3
 
@@ -129,5 +129,6 @@ def clear_history():
     session.pop('history', None)
     session.pop('current_file_name', None)
     return jsonify({"success": True})
+
 
 
